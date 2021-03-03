@@ -1,5 +1,5 @@
 ### 小马哥极客时间
-#### 第一周作业：实现注册功能
+#### 第一周作业：JNDI配置数据源，mvc三层架构实现注册功能
 #### 步骤：
 * mvn clean package
 * java -jar user-web/target/user-web-v1-SNAPSHOT-war-exec.jar
