@@ -1,7 +1,9 @@
 package org.geektimes.projects.user.sql;
 
+import org.geektimes.projects.user.context.ComponentContext;
 import org.geektimes.projects.user.domain.User;
 
+import javax.sql.DataSource;
 import java.beans.BeanInfo;
 import java.beans.Introspector;
 import java.beans.PropertyDescriptor;
@@ -19,16 +21,16 @@ public class DBConnectionManager {
     }
 
     public Connection getConnection() {
+        DataSource dataSource = ComponentContext.getInstance().getComponent("jdbc/UserPlatformDB");
+        try {
+            connection = dataSource.getConnection();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
         return this.connection;
     }
 
-    public DBConnectionManager() {
-        try {
-            this.connection = DataSourceManager.getDataSource().getConnection();
-        } catch (Throwable e) {
-            throw new RuntimeException(e.getCause());
-        }
-    }
+
 
     public void releaseConnection() {
         if (this.connection != null) {

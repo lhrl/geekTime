@@ -60,7 +60,6 @@
                             <!-- ServletContext 路径 -->
                             <path>/</path>
                             <enableNaming>true</enableNaming>
-                            <!--<serverXml></serverXml>-->
                         </configuration>
                     </execution>
                 </executions>

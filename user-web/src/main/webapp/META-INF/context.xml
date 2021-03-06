@@ -8,5 +8,21 @@
               driverClassName="org.apache.derby.jdbc.EmbeddedDriver"
               url="jdbc:derby:db/user-platform;create=true"/>
 
+
+    <!-- DBConnectionManager bean -->
+    <Resource name="bean/DBConnectionManager" auth="Container"
+              type="org.geektimes.projects.user.sql.DBConnectionManager"
+              factory="org.apache.naming.factory.BeanFactory" />
+
+    <!-- UserService Bean -->
+    <Resource name="bean/userService" auth="Container"
+              type="org.geektimes.projects.user.service.impl.UserServiceImpl"
+              factory="org.apache.naming.factory.BeanFactory" />
+
+    <!-- UserRepository Bean -->
+    <Resource name="bean/userRepository" auth="Container"
+              type="org.geektimes.projects.user.repository.DatabaseUserRepository"
+              factory="org.apache.naming.factory.BeanFactory" />
+
 </Context>
 

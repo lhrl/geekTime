@@ -1,8 +1,8 @@
 package org.geektimes.projects.user.web.controller;
 
+import org.geektimes.projects.user.context.ComponentContext;
 import org.geektimes.projects.user.domain.User;
 import org.geektimes.projects.user.service.UserService;
-import org.geektimes.projects.user.service.impl.UserServiceImpl;
 import org.geektimes.web.mvc.controller.PageController;
 
 import javax.servlet.http.HttpServletRequest;
@@ -16,6 +16,13 @@ import javax.ws.rs.Path;
  */
 @Path("/user")
 public class UserController implements PageController {
+
+
+    private UserService userService;
+
+    public UserController() {
+        this.userService = ComponentContext.getInstance().getComponent("bean/userService");
+    }
 
 
     /**
@@ -39,7 +46,6 @@ public class UserController implements PageController {
     @POST
     @Path("/register")
     public String register(HttpServletRequest request, HttpServletResponse response) {
-        UserService userService = new UserServiceImpl();
         String name = request.getParameter("name");
         String email = request.getParameter("email");
         String phoneNumber = request.getParameter("phoneNumber");
@@ -75,7 +81,6 @@ public class UserController implements PageController {
     @GET
     @Path("/list")
     public String list(HttpServletRequest request, HttpServletResponse response) {
-        UserService userService = new UserServiceImpl();
         request.setAttribute("userList", userService.getAll());
         return "user-list.jsp";
     }
