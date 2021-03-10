@@ -50,13 +50,13 @@ public class UserController implements PageController {
     @POST
     @Path("/register")
     public String register(HttpServletRequest request, HttpServletResponse response) {
-        //数据转换
+        //1.数据转换
         UserReqDTO userReqDTO = convert(request);
         logger.info("register request params " + userReqDTO);
         try {
-            //参数校验
+            //2.参数校验
             ValidatorUtil.validateObject(userReqDTO);
-            //注册
+            //3.注册
             userService.register(userReqDTO);
             return "register-success.jsp";
         } catch (UserBizException e) {

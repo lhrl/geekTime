@@ -20,12 +20,6 @@ public class UserReqDTO {
     private String name;
 
     /**
-     * 密码
-     */
-    @Length(min = 6, max = 32, message = "密码必须在6-32位之间")
-    private String password;
-
-    /**
      * 邮箱
      */
     @Email(message = "邮箱格式不正确")
@@ -36,6 +30,14 @@ public class UserReqDTO {
      */
     @Pattern(regexp = "^[1]([3456789][0-9]{1})[0-9]{8}$",message = "手机号格式不满足")
     private String phoneNumber;
+
+    /**
+     * 密码
+     */
+    @Length(min = 6, max = 32, message = "密码必须在6-32位之间")
+    private String password;
+
+
 
     public String getName() {
         return name;

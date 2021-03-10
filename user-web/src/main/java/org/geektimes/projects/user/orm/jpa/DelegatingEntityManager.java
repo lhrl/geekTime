@@ -27,12 +27,15 @@ public class DelegatingEntityManager implements EntityManager {
 
     private String propertiesLocation;
 
-    private EntityManager entityManager;
+    private EntityManagerFactory entityManagerFactory;
 
     @PostConstruct
     public void init() {
-        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory(persistenceUnitName, loadProperties(propertiesLocation));
-        entityManager = entityManagerFactory.createEntityManager();
+        entityManagerFactory = Persistence.createEntityManagerFactory(persistenceUnitName, loadProperties(propertiesLocation));
+    }
+
+    private EntityManager getEntityManager() {
+        return entityManagerFactory.createEntityManager();
     }
 
     public Map loadProperties(String propertiesLocation) {
@@ -66,7 +69,11 @@ public class DelegatingEntityManager implements EntityManager {
 
     @Override
     public void persist(Object entity) {
+        EntityManager entityManager = getEntityManager();
+        EntityTransaction transaction = entityManager.getTransaction();
+        transaction.begin();
         entityManager.persist(entity);
+        transaction.commit();
     }
 
     @Override
@@ -81,7 +88,7 @@ public class DelegatingEntityManager implements EntityManager {
 
     @Override
     public <T> T find(Class<T> clazz, Object entity) {
-        return entityManager.find(clazz, entity);
+        return getEntityManager().find(clazz, entity);
     }
 
     @Override
@@ -281,7 +288,7 @@ public class DelegatingEntityManager implements EntityManager {
 
     @Override
     public EntityTransaction getTransaction() {
-        return entityManager.getTransaction();
+        return getEntityManager().getTransaction();
     }
 
     @Override

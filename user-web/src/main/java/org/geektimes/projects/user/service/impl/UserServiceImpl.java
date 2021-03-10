@@ -39,10 +39,7 @@ public class UserServiceImpl implements UserService, ComponentContextAware {
     @Override
     public void register(UserReqDTO userReqDTO) {
         User user = BeanConvertUtils.userDTO2User(userReqDTO);
-        EntityTransaction transaction = entityManager.getTransaction();
-        transaction.begin();
         entityManager.persist(user);
-        transaction.commit();
     }
 
     @PostConstruct
