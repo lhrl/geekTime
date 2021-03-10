@@ -1,6 +1,7 @@
 package org.geektimes.projects.user.service;
 
 import org.geektimes.projects.user.domain.User;
+import org.geektimes.projects.user.domain.UserReqDTO;
 
 import java.util.Collection;
 
@@ -12,10 +13,10 @@ public interface UserService {
     /**
      * 注册用户
      *
-     * @param user 用户对象
+     * @param userReqDTO 用户对象
      * @return 成功返回<code>true</code>
      */
-    boolean register(User user);
+    void register(UserReqDTO userReqDTO);
 
     /**
      * 注销用户

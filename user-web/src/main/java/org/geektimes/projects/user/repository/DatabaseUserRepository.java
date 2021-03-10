@@ -5,6 +5,7 @@ import org.geektimes.projects.user.context.ComponentContext;
 import org.geektimes.projects.user.domain.User;
 import org.geektimes.projects.user.sql.DBConnectionManager;
 
+import javax.annotation.Resource;
 import java.beans.BeanInfo;
 import java.beans.Introspector;
 import java.beans.PropertyDescriptor;
@@ -21,6 +22,10 @@ import static org.apache.commons.lang.ClassUtils.wrapperToPrimitive;
 
 public class DatabaseUserRepository implements UserRepository {
 
+    @Resource(name = "bean/DBConnectionManager")
+    private  DBConnectionManager dbConnectionManager;
+
+
     private static Logger logger = Logger.getLogger(DatabaseUserRepository.class.getName());
 
     /**
@@ -34,11 +39,8 @@ public class DatabaseUserRepository implements UserRepository {
 
     public static final String QUERY_ALL_USERS_DML_SQL = "SELECT id,name,password,email,phoneNumber FROM users";
 
-    private final DBConnectionManager dbConnectionManager;
 
-    public DatabaseUserRepository() {
-        this.dbConnectionManager = ComponentContext.getInstance().getComponent("bean/DBConnectionManager");
-    }
+
 
     private Connection getConnection() {
         return dbConnectionManager.getConnection();

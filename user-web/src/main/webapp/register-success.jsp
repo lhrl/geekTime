@@ -20,11 +20,11 @@
 </head>
 <body>
 	<div class="container">
-			<h1 class="h3 mb-3 font-weight-normal" style="color: red">恭喜你、账号注册成功啦！！！</h1>
+			<h1 class="h3 mb-3 font-weight-normal" style="color: red;text-align: center">恭喜你、账号注册成功啦！！！</h1>
 	</div>
 </body>
 <script type="text/javascript">
 
-	setTimeout("window.location.assign('preLogin')",2000);
+	setTimeout("window.location.assign('list')",2000);
 
 </script>

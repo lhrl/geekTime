@@ -1,27 +1,25 @@
 package org.geektimes.web.mvc;
 
 import org.apache.commons.lang.StringUtils;
+import org.geektimes.web.mvc.context.WebComponentContext;
 import org.geektimes.web.mvc.controller.Controller;
 import org.geektimes.web.mvc.controller.PageController;
 import org.geektimes.web.mvc.controller.RestController;
-import org.geektimes.web.mvc.header.CacheControlHeaderWriter;
-import org.geektimes.web.mvc.header.annotation.CacheControl;
 
+import javax.annotation.Resource;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.ws.rs.DELETE;
-import javax.ws.rs.GET;
 import javax.ws.rs.HttpMethod;
 import javax.ws.rs.Path;
 import java.io.IOException;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
+import java.lang.reflect.Modifier;
 import java.util.*;
 
 import static java.util.Arrays.asList;
@@ -38,6 +36,7 @@ public class FrontControllerServlet extends HttpServlet {
      * 请求路径和 {@link HandlerMethodInfo} 映射关系缓存
      */
     private Map<String, HandlerMethodInfo> handleMethodInfoMapping = new HashMap<>();
+
 
     /**
      * 初始化 Servlet
@@ -69,7 +68,26 @@ public class FrontControllerServlet extends HttpServlet {
                         new HandlerMethodInfo(requestPath, method, supportedHttpMethods));
                 controllersMapping.put(requestPath, controller);
             }
+            //注入
+            injectControllerComponent(controller);
         }
+    }
+
+    private void injectControllerComponent(Controller controller) {
+        Class<?> controllerClass = controller.getClass();
+        Arrays.stream(controllerClass.getDeclaredFields()).filter(field ->
+            !Modifier.isStatic(field.getModifiers()) && field.isAnnotationPresent(Resource.class)
+        ).forEach(field -> {
+            field.setAccessible(true);
+            Resource resource = field.getAnnotation(Resource.class);
+            String name = resource.name();
+            Object targetComponent = WebComponentContext.getComponentMap().get(name);
+            try {
+                field.set(controller, targetComponent);
+            } catch (IllegalAccessException e) {
+                throw new RuntimeException(e.getCause());
+            }
+        });
     }
 
     /**

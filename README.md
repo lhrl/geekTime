@@ -1,5 +1,5 @@
 ### 小马哥极客时间
-#### 第一周作业修订版本：JNDI实现数据源配置，并且提供依赖查找对应组件功能
+#### 第二周作业：使用@Resource注解实现依赖注入，并对注册请求参数进行校验
 #### 步骤：
 * mvn clean package
 * java -jar user-web/target/user-web-v1-SNAPSHOT-war-exec.jar

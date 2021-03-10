@@ -3,6 +3,8 @@ package org.geektimes.projects.user.sql;
 import org.geektimes.projects.user.context.ComponentContext;
 import org.geektimes.projects.user.domain.User;
 
+import javax.annotation.Resource;
+import javax.persistence.EntityManager;
 import javax.sql.DataSource;
 import java.beans.BeanInfo;
 import java.beans.Introspector;
@@ -14,14 +16,19 @@ import java.util.Map;
 
 public class DBConnectionManager {
 
-    private  Connection connection;
+    @Resource(name = "bean/entityManager")
+    private EntityManager entityManager;
 
-    public void setConnection(Connection connection) {
-        this.connection = connection;
+    @Resource(name = "jdbc/UserPlatformDB")
+    private DataSource dataSource;
+
+    public EntityManager getEntityManager() {
+        return entityManager;
     }
 
+    private  Connection connection;
+
     public Connection getConnection() {
-        DataSource dataSource = ComponentContext.getInstance().getComponent("jdbc/UserPlatformDB");
         try {
             connection = dataSource.getConnection();
         } catch (SQLException e) {

@@ -25,7 +25,11 @@
         <javax.ws.rs-api.version>2.0.1</javax.ws.rs-api.version>
         <jstl.version>1.2</jstl.version>
         <commons-lang.version>2.6</commons-lang.version>
-        <derby.version>10.14.2.0</derby.version>
+        <derby.version>10.3.1.4</derby.version>
+        <hibernate.version>5.4.29.Final</hibernate.version>
+        <hibernate.validator.version>5.4.3.Final</hibernate.validator.version>
+        <jakarta.el.version>3.0.3</jakarta.el.version>
+        <javax.el-api.version>3.0.0</javax.el-api.version>
 
         <!-- Maven Plugins 版本 -->
         <maven.compiler.version>3.8.1</maven.compiler.version>
@@ -74,6 +78,29 @@
                 <artifactId>derby</artifactId>
                 <version>${derby.version}</version>
             </dependency>
+
+            <!-- Hibernate ORM Core -->
+            <dependency>
+                <groupId>org.hibernate</groupId>
+                <artifactId>hibernate-core</artifactId>
+                <version>${hibernate.version}</version>
+            </dependency>
+
+            <!-- Hibernate JPA support -->
+            <dependency>
+                <groupId>org.hibernate</groupId>
+                <artifactId>hibernate-entitymanager</artifactId>
+                <version>${hibernate.version}</version>
+            </dependency>
+
+            <!-- Hibernate Validator -->
+            <dependency>
+                <groupId>org.hibernate.validator</groupId>
+                <artifactId>hibernate-validator</artifactId>
+                <version>${hibernate.validator.version}</version>
+            </dependency>
+
+
 
         </dependencies>
 
