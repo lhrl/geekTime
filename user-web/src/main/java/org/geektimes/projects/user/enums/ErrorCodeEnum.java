@@ -7,9 +7,11 @@ package org.geektimes.projects.user.enums;
  */
 public enum  ErrorCodeEnum {
 
-    ERROR_99999("API99999", "系统繁忙，请稍后再试"),
+    ERROR_99999("API99999", "系统繁忙,请稍后再试"),
 
     PARAMS_ILLEGAL("PARAMS_ILLEGAL","参数异常"),
+
+    USER_REGISTERED("USER_REGISTERED", "该用户名已被注册,换一个试试"),
 
     ;
 

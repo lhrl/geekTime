@@ -4,6 +4,8 @@ import org.geektimes.projects.user.context.ComponentContext;
 import org.geektimes.projects.user.context.ComponentContextAware;
 import org.geektimes.projects.user.domain.User;
 import org.geektimes.projects.user.domain.UserReqDTO;
+import org.geektimes.projects.user.enums.ErrorCodeEnum;
+import org.geektimes.projects.user.exception.UserBizException;
 import org.geektimes.projects.user.repository.UserRepository;
 import org.geektimes.projects.user.service.UserService;
 import org.geektimes.projects.user.util.BeanConvertUtils;
@@ -11,8 +13,7 @@ import org.geektimes.projects.user.util.BeanConvertUtils;
 import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 import javax.persistence.EntityManager;
-import javax.persistence.EntityTransaction;
-import javax.validation.Validator;
+import javax.persistence.Query;
 import java.util.Collection;
 
 /**
@@ -39,7 +40,18 @@ public class UserServiceImpl implements UserService, ComponentContextAware {
     @Override
     public void register(UserReqDTO userReqDTO) {
         User user = BeanConvertUtils.userDTO2User(userReqDTO);
+        //1.检查用户名是否已经注册
+        checkUserRegistered(user);
+        //2.开始注册
         entityManager.persist(user);
+    }
+
+    private void checkUserRegistered(User user) {
+        String querySql = "select u.name from User u where u.name=:name";
+        Query query = entityManager.createQuery(querySql).setParameter("name", user.getName());
+        if (query.getResultList().size() > 0) {
+            throw new UserBizException(ErrorCodeEnum.USER_REGISTERED);
+        }
     }
 
     @PostConstruct
@@ -61,6 +73,7 @@ public class UserServiceImpl implements UserService, ComponentContextAware {
     public User queryUserById(Long id) {
         return null;
     }
+
 
     @Override
     public User queryUserByNameAndPassword(String name, String password) {

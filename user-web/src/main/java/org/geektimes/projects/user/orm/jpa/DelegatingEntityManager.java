@@ -188,7 +188,7 @@ public class DelegatingEntityManager implements EntityManager {
 
     @Override
     public Query createQuery(String s) {
-        return null;
+        return getEntityManager().createQuery(s);
     }
 
     @Override
