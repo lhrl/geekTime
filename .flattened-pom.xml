@@ -20,6 +20,7 @@
     <maven.source.version>3.2.1</maven.source.version>
     <javax.ws.rs-api.version>2.0.1</javax.ws.rs-api.version>
     <javax.servlet-api.version>3.1.0</javax.servlet-api.version>
+    <jolokia-core.version>1.6.2</jolokia-core.version>
     <project.build.sourceEncoding>${file.encoding}</project.build.sourceEncoding>
     <revision>v1-SNAPSHOT</revision>
     <maven.compiler.source>8</maven.compiler.source>
@@ -84,6 +85,11 @@
         <groupId>javax.el</groupId>
         <artifactId>javax.el-api</artifactId>
         <version>${javax.el-api.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.jolokia</groupId>
+        <artifactId>jolokia-core</artifactId>
+        <version>${jolokia-core.version}</version>
       </dependency>
     </dependencies>
   </dependencyManagement>

@@ -51,6 +51,10 @@
       <groupId>javax.el</groupId>
       <artifactId>javax.el-api</artifactId>
     </dependency>
+    <dependency>
+      <groupId>org.jolokia</groupId>
+      <artifactId>jolokia-core</artifactId>
+    </dependency>
   </dependencies>
   <build>
     <plugins>

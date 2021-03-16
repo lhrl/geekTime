@@ -1,14 +1,18 @@
 package org.geektimes.projects.user.web.listener;
 
 import org.geektimes.projects.user.context.ComponentContext;
+import org.geektimes.projects.user.jmx.Student;
 import org.geektimes.projects.user.sql.DataSourceManager;
 
+import javax.management.MBeanServer;
+import javax.management.ObjectName;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 import javax.sql.DataSource;
+import java.lang.management.ManagementFactory;
 import java.sql.Connection;
 import java.sql.DriverManager;
 

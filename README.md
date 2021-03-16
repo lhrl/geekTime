@@ -1,9 +1,11 @@
 ### 小马哥极客时间
-#### 第二周作业：使用@Resource注解实现依赖注入，对注册参数进行校验，使用jpa完成注册
+#### 第三周作业：
+需求一：整合 https://jolokia.org/，实现一个自定义 JMX MBean，通过 Jolokia 做 Servlet 代理
 #### 步骤：
 * mvn clean package
 * java -jar user-web/target/user-web-v1-SNAPSHOT-war-exec.jar
-#### 访问注册页面：
-http://localhost:8080/user/preRegister
-##### 访问用户列表页面：
-http://localhost:8080/user/list
+
+#### 写入MBean：
+http://localhost:8080/jolokia/write/com.lhrl.jmx:type=Student/Name/zhangsan
+#### 读取MBean：
+http://localhost:8080/jolokia/read/com.lhrl.jmx:type=Student
