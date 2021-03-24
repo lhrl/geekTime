@@ -1,6 +1,7 @@
-package org.geektimes.projects.user.context;
+package org.geektimes.projects.injection.context;
 
-import org.geektimes.function.ThrowableAction;
+import org.geektimes.projects.common.aware.Aware;
+import org.geektimes.projects.common.function.ThrowableAction;
 import org.geektimes.web.mvc.context.WebComponentContext;
 
 import javax.annotation.PostConstruct;
@@ -14,7 +15,7 @@ import java.util.stream.Stream;
 /**
  * Desc: 全局上下文
  * User: 刘浪
- * Date: 2021-03-06 11:22
+ * Date: 2021-03-24 16:36
  */
 public class ComponentContext {
 

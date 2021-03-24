@@ -13,6 +13,9 @@
     <modules>
         <module>my-web-mvc</module>
         <module>user-web</module>
+        <module>my-configuration</module>
+        <module>my-dependency-injection</module>
+        <module>my-common</module>
     </modules>
 
     <properties>
@@ -31,6 +34,8 @@
         <jakarta.el.version>3.0.3</jakarta.el.version>
         <javax.el-api.version>3.0.0</javax.el-api.version>
         <jolokia-core.version>1.6.2</jolokia-core.version>
+        <microprofile-config-api.version>2.0</microprofile-config-api.version>
+
 
         <!-- Maven Plugins 版本 -->
         <maven.compiler.version>3.8.1</maven.compiler.version>
@@ -117,6 +122,15 @@
                 <artifactId>jolokia-core</artifactId>
                 <version>${jolokia-core.version}</version>
             </dependency>
+
+            <!-- MicroProfile Config -->
+            <dependency>
+                <groupId>org.eclipse.microprofile.config</groupId>
+                <artifactId>microprofile-config-api</artifactId>
+                <version>${microprofile-config-api.version}</version>
+            </dependency>
+
+
 
 
 

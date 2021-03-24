@@ -1,5 +1,7 @@
 package org.geektimes.projects.user.web.controller;
 
+import org.eclipse.microprofile.config.Config;
+import org.geektimes.configuration.microprofile.config.source.servlet.MyConfigApplicationInitializer;
 import org.geektimes.projects.user.domain.UserReqDTO;
 import org.geektimes.projects.user.enums.ErrorCodeEnum;
 import org.geektimes.projects.user.exception.UserBizException;
@@ -8,12 +10,12 @@ import org.geektimes.projects.user.util.ValidatorUtil;
 import org.geektimes.web.mvc.controller.PageController;
 
 import javax.annotation.Resource;
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
-import java.util.ArrayList;
 import java.util.logging.Logger;
 
 /**
@@ -97,6 +99,24 @@ public class UserController implements PageController {
         request.setAttribute("userList", userService.getAll());
         return "user-list.jsp";
     }
+
+    /**
+     * 获取配置列表
+     * @param request
+     * @param response
+     * @return
+     */
+    @GET
+    @Path("/config")
+    public String config(HttpServletRequest request, HttpServletResponse response) {
+        ServletContext servletContext = request.getServletContext();
+        Config config = (Config) servletContext.getAttribute("config");
+        config.getPropertyNames().forEach(logger::info);
+        String value = config.getValue("user.name", String.class);
+        request.setAttribute("systemUserName", value);
+        return "user-config.jsp";
+    }
+
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws Throwable {

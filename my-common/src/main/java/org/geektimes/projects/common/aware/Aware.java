@@ -1,4 +1,4 @@
-package org.geektimes.projects.user.context;
+package org.geektimes.projects.common.aware;
 
 /**
  * Desc: Aware标记接口

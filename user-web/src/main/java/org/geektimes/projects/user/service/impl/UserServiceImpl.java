@@ -1,7 +1,7 @@
 package org.geektimes.projects.user.service.impl;
 
-import org.geektimes.projects.user.context.ComponentContext;
-import org.geektimes.projects.user.context.ComponentContextAware;
+import org.geektimes.projects.injection.context.ComponentContext;
+import org.geektimes.projects.injection.context.ComponentContextAware;
 import org.geektimes.projects.user.domain.User;
 import org.geektimes.projects.user.domain.UserReqDTO;
 import org.geektimes.projects.user.enums.ErrorCodeEnum;

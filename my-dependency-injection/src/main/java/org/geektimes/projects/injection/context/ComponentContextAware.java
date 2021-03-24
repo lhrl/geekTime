@@ -1,4 +1,6 @@
-package org.geektimes.projects.user.context;
+package org.geektimes.projects.injection.context;
+
+import org.geektimes.projects.common.aware.Aware;
 
 /**
  * Desc: 全局上下文Aware
