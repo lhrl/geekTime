@@ -16,6 +16,8 @@
         <module>my-configuration</module>
         <module>my-dependency-injection</module>
         <module>my-common</module>
+        <module>my-reactive-messaging</module>
+        <module>my-rest-client</module>
     </modules>
 
     <properties>
@@ -28,6 +30,7 @@
         <javax.ws.rs-api.version>2.0.1</javax.ws.rs-api.version>
         <jstl.version>1.2</jstl.version>
         <commons-lang.version>2.6</commons-lang.version>
+        <commons-io.version>2.4</commons-io.version>
         <derby.version>10.3.1.4</derby.version>
         <hibernate.version>5.4.29.Final</hibernate.version>
         <hibernate.validator.version>5.4.3.Final</hibernate.validator.version>
@@ -35,7 +38,9 @@
         <javax.el-api.version>3.0.0</javax.el-api.version>
         <jolokia-core.version>1.6.2</jolokia-core.version>
         <microprofile-config-api.version>2.0</microprofile-config-api.version>
-
+        <microprofile-reactive-messaging-api.version>1.0</microprofile-reactive-messaging-api.version>
+        <microprofile-rest-client-api.version>2.0</microprofile-rest-client-api.version>
+        <jackson.version>2.9.5</jackson.version>
 
         <!-- Maven Plugins 版本 -->
         <maven.compiler.version>3.8.1</maven.compiler.version>
@@ -77,6 +82,13 @@
                 <groupId>commons-lang</groupId>
                 <artifactId>commons-lang</artifactId>
                 <version>${commons-lang.version}</version>
+            </dependency>
+
+            <!-- Apache Commons I/O -->
+            <dependency>
+                <groupId>commons-io</groupId>
+                <artifactId>commons-io</artifactId>
+                <version>${commons-io.version}</version>
             </dependency>
 
             <dependency>
@@ -130,9 +142,34 @@
                 <version>${microprofile-config-api.version}</version>
             </dependency>
 
+            <dependency>
+                <groupId>org.eclipse.microprofile.reactive.messaging</groupId>
+                <artifactId>microprofile-reactive-messaging-api</artifactId>
+                <version>${microprofile-reactive-messaging-api.version}</version>
+            </dependency>
 
+            <dependency>
+                <groupId>org.eclipse.microprofile.rest.client</groupId>
+                <artifactId>microprofile-rest-client-api</artifactId>
+                <version>${microprofile-rest-client-api.version}</version>
+            </dependency>
 
-
+            <!-- Jackson -->
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-core</artifactId>
+                <version>${jackson.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-databind</artifactId>
+                <version>${jackson.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-annotations</artifactId>
+                <version>${jackson.version}</version>
+            </dependency>
 
         </dependencies>
 
